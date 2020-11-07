@@ -329,6 +329,136 @@ def menu():
 		else:
 			exit()
 
+			
+def list_images():
+	os.system("docker images")
+	
+def list_con():
+	os.system("docker ps")
+
+def list_all_con():
+	os.system("docker ps -a")
+	
+def con_launch():
+	print("/n /n")
+	a = input("Enter name of container : ")
+	b = input("Enter image to be used : ")
+	os.system("docker run -it --name {}  {}".format(a,b))
+	
+def search_img():
+	a = input("Enter the image to be searched on docker hub: ")
+	os.system("docker search {}".format(a))
+
+def pull_img():
+	a = input("Enter the name of image to be pulled from docker hub: ")
+	os.system("docker pull {}".format(a))
+	
+def on_the_fly_con_run():
+	a = input("Enter the image to be used: ")
+	b = input("Enter the command to be run: ")
+	os.system("docker run -i {} {}".format(a,b))
+
+def con_stop():
+	a = input("Name/Id of the container to be stopped: ")
+	os.system("docker stop {}".format(a))
+	
+def con_start():
+	a = input("Name/Id of the container to be started: ")
+	os.system("docker start {}".format(a))
+	
+def get_console():
+	a = input("Id of the running container: ")
+	os.system("docker attach {}".format(a))
+
+def del_con():
+	a = input("Name/Id of of the container")
+	os.system("docker rm {}".format(a))
+
+def del_image():
+	a = input("Image to be deleted")
+	os.system("docker rmi {}".format(a))
+
+def get_logs():
+	a = input("Name of the container: ")
+	os.system("docker logs {}".format(a))
+
+def cp_base_con():
+	a = input("Path of the file to be copied: ")
+	b = input("Name of the container: ")
+	c = input("Final destination path: ")
+	os.system("docker cp {} {}:{}".format(a,b,c))
+	
+def cp_con_base():
+	a = input("Name of the container: ")
+	b = input("Initial path of the file in the container: ")
+	c = input("Destination path: ")
+	os.system("docker cp {}:{} {}".format(a,b,c))
+	
+def install():
+	os.system("yum install docker-ce --nobest")
+
+def start():
+	os.system("systemctl start docker")
+	
+def docker():
+	while True:
+		print("\n \n")
+		print("""
+			Enter 100: To install docker container engine
+			Enter 101: To start the docker services
+			Press 1: List the images
+			Press 2: List the running containers
+			Press 3: List all the containers
+			Press 4: Launch new container
+			Press 5: Search new image
+			Press 6: Pull new image
+			Press 7: To launch a contanier run a command and then shutdown
+			Press 8: Stop a running container
+			Press 9: Start a stopped/exited container
+			Press 10: Get the console of a running container
+			Press 11: Delete a stopped container
+			Press 12: Delete an image
+			Press 13: Get the logs
+			Press 14: Copy file from base os to container
+			Press 15: Copy file from container to base os
+			""")
+		
+		i = int(input("Enter your choice: "))
+		if i==1:
+			list_images()
+		elif i==2:
+			list_con()
+		elif i==3:
+			list_all_con()
+		elif i==4:
+			con_launch()
+		elif i==5:
+			search_img()
+		elif i==6:
+			pull_img()
+		elif i==7:
+			on_the_fly_con_run()
+		elif i==8:
+			con_stop()
+		elif i==9:
+			con_start()
+		elif i==10:
+			get_console()
+		elif i==11:
+			del_con()
+		elif i==12:
+			del_image()
+		elif i==13:
+			get_logs()
+		elif i==14:
+			cp_base_con()
+		elif i==15:
+			cp_con_base()
+		elif i==100:
+			install()
+		elif i==101:
+			start()
+
 
 while True:
 		print("\n \n")
