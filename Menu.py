@@ -459,6 +459,63 @@ def docker():
 		elif i==101:
 			start()
 
+def clus_check():
+	os.system("hadoop fs -ls /")
+	
+def clus_upload():
+	a = input("Path of file to be uploaded: ")
+	os.system("hadoop fs -put {} /".format(a))
+
+def file_read():
+	a = input("Path of file on filesystem to read: ")
+	os.system("hadoop fs -cat {}".format(a))
+
+def file_remove():
+	a = input("Path of file on filesystem to remove: ")
+	os.system("hadoop fs -rm {}".format(a))
+	
+def dir_create():
+	a = input("Name of directory: ")
+	os.system("hadoop fs -mkdir /{}".format(a))
+
+def clus_upload_dir():
+	a = input("Path of file to be uploaded: ")
+	b = input("Name of directory where the file has to be uploaded: ")
+	os.system("hadoop fs -put {} /{}".format(a,b))
+	
+def file_create():
+	a = input("Name of file to be created: ")
+	b = input("Destination path on the filesystem: ")
+	os.system("hadoop fs -touchz {}  {}".format(a,b))
+			
+def Hadoop():
+	while True:
+		print("welcome to client console of hadoop")
+		print("""
+			Press 1: Check the cluster filesystem
+			Press 2: Upload any file to filesystem
+			Press 3: Read any file from the filesystem
+			Press 4: Remove any file from the filesystem
+			Press 5: Create a directory in the filesystem
+			Press 6: Upload any file to any specific directory
+			Press 7: Create an empty file on the filesystem
+			""")
+		i = int(input("Enter your choice: "))
+		if i==1:
+			clus_check()
+		elif i==2:
+			clus_upload()
+		elif i==3:
+			file_read()
+		elif i==4:
+			file_remove()
+		elif i==5:
+			dir_create()
+		elif i==6:
+			clus_upload_dir()
+		elif i==7:
+			file_create()
+
 
 while True:
 		print("\n \n")
